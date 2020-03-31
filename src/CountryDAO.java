@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public interface CountryDAO {
 	
 	public ArrayList<Country> getCountry();
-	public Country findCoutryrByCode(int code);
-	public boolean saveCustomer(Country country);
+	public Country findCountryByCode(int code);
+	public boolean saveCountry(Country country);
+	
 }

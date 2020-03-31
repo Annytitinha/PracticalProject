@@ -6,7 +6,7 @@ public class Country {
 	private String SurfaceArea;
 	private String HeadOfState;
 	
-	public void Countryr(int Code, String Name, String Continent, String SurfaceArea, String HeadOfState) {
+	public Country(int Code, String Name, String Continent, String SurfaceArea, String HeadOfState) {
 		this.Code = Code;
 		this.Name = Name;
 		this. Continent = Continent;
