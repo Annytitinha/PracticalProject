@@ -1,12 +1,10 @@
-import java.util.List;
+import java.util.ArrayList;
 
 
 
 public interface CountryDAO {
-	public void save(Country country);
-
-	public List<Country> list();
-
-	public List<Country> listByContinent(Integer Code);
-
+	
+	public ArrayList<Country> getCountry();
+	public Country findCoutryrByCode(int code);
+	public boolean saveCustomer(Country country);
 }
