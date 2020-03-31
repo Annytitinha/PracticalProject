@@ -4,40 +4,56 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
 public class DB_Connect {
+	
+	private String db = "jdbc:mysql://apontejaj.com:3306/customer";
+	private String un = "cctstudent";
+	private String pw = "Pass1234!";
+	
+	public DB_Connect() {
+		
+		try{
+			
+			// Get a connection to the database
+			Connection conn = DriverManager.getConnection( db, un, pw ) ;
 
-	    private static String IP;
-	    private static DB_Connect instance;
+			// Get a statement from the connection
+			Statement stmt = conn.createStatement() ;
 
-	    private Connection conn;
+			// Execute the query
+			ResultSet rs = stmt.executeQuery( "SELECT * FROM country" ) ;
 
-	    private String databaseName;
-	    private String UserName;
-	    private String password;
-	    private DB_Connect() {
-	        IP = "52.50.23.197";
-	        databaseName = "world";
-	        UserName = "cctstudent";
-	        password = "Pass1234!";
-	        try {
-	            Class.forName("com.mysql.cj.jdbc.Driver");
-	            conn = DriverManager.getConnection("jdbc:mysql://"+IP+":3306/" + databaseName + "?user=" + UserName + "&password=" + password);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    
-	    public static DB_Connect getInstance() {
-	        if (instance == null) {
-	            instance = new DB_Connect();
-	        }
-	        return instance;
-	    }
+			// Loop through the result set
+			while( rs.next() )
+				System.out.println( rs.getString(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3)) ;
 
-	    public Connection getConnection(){
-	        return conn;
-	    }
+			// Close the result set, statement and the connection
+			rs.close() ;
+			stmt.close() ;
+			conn.close() ;
+		}
+		catch( SQLException se ){
+			System.out.println( "SQL Exception:" ) ;
 
+			// Loop through the SQL Exceptions
+			while( se != null ){
+				System.out.println( "State  : " + se.getSQLState()  ) ;
+				System.out.println( "Message: " + se.getMessage()   ) ;
+				System.out.println( "Error  : " + se.getErrorCode() ) ;
 
+				se = se.getNextException() ;
+			}
+		}
+		catch( Exception e ){
+			System.out.println( e ) ;
+		}
+	}
 
 }
