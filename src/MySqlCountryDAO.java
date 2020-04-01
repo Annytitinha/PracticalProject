@@ -3,7 +3,7 @@
 	import java.sql.SQLException;
 	import java.util.ArrayList;
 
-	public class MySqlCountryDAO implements CountryDAO {
+	public class MySQLCountryDAO implements CountryDAO {
 
 		// METHOD 1: GET ALL CUSTOMERS
 		@Override
@@ -21,17 +21,24 @@
 			
 			// QUERYING THE DATABASE
 			ResultSet rs = db.select(query);
+			int Code = 0;
+			String Name = "";
+			String Continent = "";
+			String SurfaceArea = "";
+			String HeadOfState = "";
+			Country c = null;
+			
 			
 			// LOOP OVER THE RESULT SET
 			try {
 				while( rs.next() ) {
 					// FOR EACH ONE OF THE VALUES, WE WANT TO
 					// GET THE ATTRIBTUES
-					int Code = rs.getInt(1);
-					String Name = rs.getString(2);
-					String Continent = rs.getString(3);
-					String SurfaceArea = rs.getString(4);
-					String HeadOfState = rs.getString(5);
+					Code = rs.getInt(1);
+					Name = rs.getString(2);
+					Continent = rs.getString(3);
+					SurfaceArea = rs.getString(4);
+					HeadOfState = rs.getString(5);
 					
 					country.add(new Country(Code, Name, Continent, SurfaceArea, HeadOfState));	
 				}
@@ -67,7 +74,7 @@
 			// OF CUSTOMER
 			try {
 				rs.next();
-				int Code = rs.getInt(1);
+				
 				String Name = rs.getString(2);
 				String Continent = rs.getString(3);
 				String SurfaceArea = rs.getString(4);
@@ -94,7 +101,7 @@
 			
 			ResultSet rs;
 			// FROM THE OBJECT, GETTING THE DATA
-			int Code = rs.getInt(1);
+			
 			String Name = rs.getString(2);
 			String Continent = rs.getString(3);
 			String SurfaceArea = rs.getString(4);
