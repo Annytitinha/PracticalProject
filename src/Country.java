@@ -1,61 +1,61 @@
 
 public class Country {
-	private int Code;
-	private String Name;
-	private String Continent;
-	private String SurfaceArea;
-	private String HeadOfState;
+	private String code;
+	private String name;
+	private String continent;
+	private float surfaceArea;
+	private String headOfState;
 	
-	public Country(int Code, String Name, String Continent, String SurfaceArea, String HeadOfState) {
-		this.Code = Code;
-		this.Name = Name;
-		this. Continent = Continent;
-		this.SurfaceArea = SurfaceArea;
-		this.HeadOfState = HeadOfState;
+	public Country(String code, String name, String continent, float surfaceArea, String headOfState) {
+		this.code = code;
+		this.name = name;
+		this.continent = continent;
+		this.surfaceArea = surfaceArea;
+		this.headOfState = headOfState;
 	}
 
-	public int getCode() {
-		return Code;
+	public String getCode() {
+		return code;
 	}
 
-	public void setCode(int Code) {
-		this.Code = Code;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	public void setName(String Name) {
-		this.Name = Name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getContinent() {
-		return Continent;
+		return continent;
 	}
 
-	public void setContinent(String Continent) {
-		this.Continent = Continent;
+	public void setContinent(String continent) {
+		this.continent = continent;
 	}
 
-	public String getSurfaceArea() {
-		return SurfaceArea;
+	public float getSurfaceArea() {
+		return surfaceArea;
 	}
 
-	public void setSurfaceArea(String SurfaceArea) {
-		this.SurfaceArea = SurfaceArea;
+	public void setSurfaceArea(float surfaceArea) {
+		this.surfaceArea = surfaceArea;
 	}
 	public String getHeadOfState() {
-		return HeadOfState;
+		return headOfState;
 	}
 
-	public void setHeadOfState(String HeadOfState) {
-		this.HeadOfState = HeadOfState;
+	public void setHeadOfState(String headOfState) {
+		this.headOfState = headOfState;
 	}
 	
 	@Override
 	public String toString() {
-		return "Code: " + Code + " Name: " + Name + " Continent: " + Continent + " SurfaceArea: " + SurfaceArea + "HeadOfState: "+ HeadOfState;
+		return "CODE: " + code + " NAME: " + name + " CONTINENT: " + continent + " SURFACE AREA: " + surfaceArea + "HEAD OF STATE: "+ headOfState;
 	}
 
 }

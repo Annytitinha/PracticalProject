@@ -1,129 +1,215 @@
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
-	import java.sql.ResultSet;
-	import java.sql.SQLException;
-	import java.util.ArrayList;
+public class MySQLCountryDAO implements CountryDAO {
 
-	public class MySQLCountryDAO implements CountryDAO {
-
-		// METHOD 1: GET ALL CUSTOMERS
-		@Override
-		public ArrayList<Country> getCountry() {
-			
-			// CREATE THE ARRAYLIST TO PUT ALL THE CUSTOMERS
-			// THAT ARE GOING TO BE RETURNED
-			ArrayList<Country> country = new ArrayList<Country>();
-			
-			// THIS IS THE METHOD IN CHARGE OF CREATE THE QUERY
-			String query = "select * from country";
-			
-			// ACCESSING THE DATABASE
-			DB_Connet db = new DB_Connet();
-			
-			// QUERYING THE DATABASE
-			ResultSet rs = db.select(query);
-			int Code = 0;
-			String Name = "";
-			String Continent = "";
-			String SurfaceArea = "";
-			String HeadOfState = "";
-			Country c = null;
-			
-			
-			// LOOP OVER THE RESULT SET
-			try {
-				while( rs.next() ) {
-					// FOR EACH ONE OF THE VALUES, WE WANT TO
-					// GET THE ATTRIBTUES
-					Code = rs.getInt(1);
-					Name = rs.getString(2);
-					Continent = rs.getString(3);
-					SurfaceArea = rs.getString(4);
-					HeadOfState = rs.getString(5);
-					
-					country.add(new Country(Code, Name, Continent, SurfaceArea, HeadOfState));	
+	@Override
+	public ArrayList<Country> getCountrieis() {
+		
+		// List to return
+		ArrayList<Country> list = new ArrayList<Country>();
+		
+		// Connecting to DB
+		DataSource db = new DataSource();
+		
+		// Querying the Database
+		ResultSet rs = db.select("select * from country;");
+		
+		try {
+		
+			// Looping over results
+			while(rs.next()) {
+				String code = rs.getString(1);
+				String name = rs.getString(2);
+				String continentString = rs.getString(3);
+				float surfaceArea = rs.getFloat(4);
+				String headOfState = rs.getString(5);
+				
+				// Converting the string to a ENUM
+				Continent continent = null;
+				if (continentString.equals("Asia")) {
+					continent = Continent.ASIA;
 				}
+				else if (continentString.equals("Europe")) {
+					continent = Continent.EUROPE;
+				}
+				else if (continentString.equals("North America")) {
+					continent = Continent.NORTH_AMERICA;
+				}
+				else if (continentString.equals("Africa")) {
+					continent = Continent.AFRICA;
+				}
+				else if (continentString.equals("Antarctica")) {
+					continent = Continent.ANTARCTICA;
+				}
+				else if (continentString.equals("Oceania")) {
+					continent = Continent.OCEANIA;
+				}
+				else if (continentString.equals("South America")) {
+					continent = Continent.SOUTH_AMERICA;
+				}
+			
+				// Creating the Country object using the builder
+				Country c = new Country.CountryBuilder(code, name, continent, surfaceArea, headOfState).build();
 				
-				// CLOSING THE CONNECTION TO THE DATABASE
-				db.closing();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				// Adding object to the list
+				list.add(c);
 
-			// RETURN THE ARRAYLIST WITH ALL THE CUSTOMERS
-			return country;
-		}
-
-		@Override
-		public Country findCountryByCode(int Code) {
-			
-			// CREATING THE OBJECT THAT WE'RE GOING TO RETURN
-			Country c = null;
-			
-			// THIS METHOD IS IN CHAGE OF CREATING THE QUERY
-			String query = "select * from country where code = " + Code;
-			
-			// ACCESSING THE DATABASE
-			DB_Connect db = new DB_Connet();
-			
-			// QUERYING THE DATABASE
-			ResultSet rs = db.select(query);
-			
-			// WITH THE RESULT GET THE DATA AND PUT IT IN THE INSTANCE 
-			// OF CUSTOMER
-			try {
-				rs.next();
-				
-				String Name = rs.getString(2);
-				String Continent = rs.getString(3);
-				String SurfaceArea = rs.getString(4);
-				String HeadOfState = rs.getString(5);
-				c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
-				
-				// CLOSING THE CONNECTION TO THE DATABASE
-				db.closing();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			
-			// RETURN THE CUSTOMER 
-			return c;
+		}catch(Exception e) {
+			System.out.println(e);
 		}
+		
+		// returning the list
+		return list;
+	}
 
-		@Override
-		public boolean saveCountry(Country country) {
+	@Override
+	public Country getCountryByCode(String code) {
+				
+		// Country to return. It will return null 
+		// if the program does not find it
+		Country c = null;
+		
+		// Connecting to DB
+		DB_Connect db = new DB_Connect();
+		
+		// Querying the Database
+		ResultSet rs = db.select("select * from country where code = '" + code + "';");
+		
+		try {
+		
+			// Looping over results
+			while(rs.next()) {
+				
+				// NOTICE THIS TIME I DON'T NEED CODE
+				//String code = rs.getString(1);
+				String name = rs.getString(2);
+				String continentString = rs.getString(3);
+				float surfaceArea = rs.getFloat(4);
+				String headOfState = rs.getString(5);
+				
+				// Converting the string to a ENUM
+				Continent continent = null;
+				if (continentString.equals("Asia")) {
+					continent = Continent.ASIA;
+				}
+				else if (continentString.equals("Europe")) {
+					continent = Continent.EUROPE;
+				}
+				else if (continentString.equals("North America")) {
+					continent = Continent.NORTH_AMERICA;
+				}
+				else if (continentString.equals("Africa")) {
+					continent = Continent.AFRICA;
+				}
+				else if (continentString.equals("Antarctica")) {
+					continent = Continent.ANTARCTICA;
+				}
+				else if (continentString.equals("Oceania")) {
+					continent = Continent.OCEANIA;
+				}
+				else if (continentString.equals("South America")) {
+					continent = Continent.SOUTH_AMERICA;
+				}
 			
-			// ACCESSING THE DATABASE
-			DB_Connet db = new DB_Connet();
+				// Creating the Country object using the builder
+				c = new Country.CountryBuilder(code, name, continent, surfaceArea, headOfState).build();
+				
+			}
 			
-			ResultSet rs;
-			// FROM THE OBJECT, GETTING THE DATA
-			
-			String Name = rs.getString(2);
-			String Continent = rs.getString(3);
-			String SurfaceArea = rs.getString(4);
-			String HeadOfState = rs.getString(5);
-			
-			// THIS METHOD IS IN CHARGE OF CREATING THE QUERY
-			String query = "insert into country (Code, Name, Continent, SurfaceArea, HeadOfState) values ('" + Name + "', '" + Continent + "', '" +SurfaceArea + "','" + HeadOfState+ "')";
-			
-			// REQUESTION TO SAVE THE DATA
-			boolean result = db.save(query);
-			
-			// CLOSING THE DATABASE
-			db.closing();
-			
-			return result;
+		}catch(Exception e) {
+			System.out.println(e);
 		}
-
 		
-
-		
+		// returning the list
+		return c;
 
 	}
 
+	@Override
+	public ArrayList<Country> getCountryByName(String nameSearch) {
+		
+		// List to return
+		ArrayList<Country> list = new ArrayList<Country>();
+		
+		// Connecting to DB
+		DataSource db = new DataSource();
+		
+		// Querying the Database
+		ResultSet rs = db.select("SELECT * FROM country WHERE NAME LIKE '%" + nameSearch + "%'");
+		
+		try {
+		
+			// Looping over results
+			while(rs.next()) {
+				String code = rs.getString(1);
+				String name = rs.getString(2);
+				String continentString = rs.getString(3);
+				float surfaceArea = rs.getFloat(4);
+				String headOfState = rs.getString(5);
+				
+				// Converting the string to a ENUM
+				Continent continent = null;
+				if (continentString.equals("Asia")) {
+					continent = Continent.ASIA;
+				}
+				else if (continentString.equals("Europe")) {
+					continent = Continent.EUROPE;
+				}
+				else if (continentString.equals("North America")) {
+					continent = Continent.NORTH_AMERICA;
+				}
+				else if (continentString.equals("Africa")) {
+					continent = Continent.AFRICA;
+				}
+				else if (continentString.equals("Antarctica")) {
+					continent = Continent.ANTARCTICA;
+				}
+				else if (continentString.equals("Oceania")) {
+					continent = Continent.OCEANIA;
+				}
+				else if (continentString.equals("South America")) {
+					continent = Continent.SOUTH_AMERICA;
+				}
+			
+				// Creating the Country object using the builder
+				Country c = new Country.CountryBuilder(code, name, continent, surfaceArea, headOfState).build();
+				
+				// Adding object to the list
+				list.add(c);
+
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		// returning the list
+		return list;
+	}
+
+	@Override
+	public boolean save(Country country) {
+		
+		// Connecting to DB
+		DataSource db = new DataSource();
+		
+		// Getting data from the country object
+		String code = country.getCode();
+		String name = country.getName();
+		Continent continent = country.getContinent();
+		float surfaceArea = country.getSurfaceArea();
+		String headOfState = country.getHeadOfState();
+		
+		String query = "INSERT INTO `world`.`country` (`Code`, `Name`, `Continent`, `SurfaceArea`, `HeadOfState`) VALUES ('" + code + "', '" + name + "', '" + continent.getName() + "', '" + surfaceArea + "', '" + headOfState + "')";
+		
+		// Querying the DB
+		return db.save(query);
+		
+	}
+
+}
 
 

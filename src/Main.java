@@ -1,45 +1,43 @@
 import java.util.ArrayList;
 
 public class Main {
-	
-public static void main(String[] args) {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		
-		// NOW THE CLIENT DOES NOT HAVE ANYTHING TO DO
-		// THE THE DATABASE CLASS. 
-		// THE CLIENT WILL ONLY TALK TO THE CUSTOMERDAO
-		// IN TERMS OF CUSTOMER
-		// IN OTHER WORDS, THE PASSING OF DATA IS GOING 
-		// TO BE CUSTOMERS OBJECTS
 		CountryDAO db = new MySQLCountryDAO();
 		
-		// GETTING ALL OF THE CUSTOMERS IN THE DATABASE
-		ArrayList<Country> country = db.getCountry();
+		// Using first method
+		ArrayList<Country> countries = db.getCountrieis();
 		
-		// PRINTING THEM TO THE CONSOLE
-		for (Country c : country) {
+		for (Country c : countries) {
 			System.out.println(c);
 		}
 		
-		// GETTING ONLY THE CUSTOMER THAT HAS THE GIVEN
-		// ID
-		Country c = db.findCountryByCode(2);
+		// Using second method
+		Country country = db.getCountryByCode("VEN");
+		System.out.println(country);
 		
-		// PRINTING IT TO THE CONSOLE
-		System.out.println(c);
+		// Using third Method
+		ArrayList<Country> countries2 = db.getCountryByName("republic");
 		
-		// CREATING A NEW CUSTOMER. KEEP IN MIND THAT
-		// THE ID OF THE NEW CUSTOMER IS GOING TO BE THE
-		// SIZE OF THE ARRAY PLUS ONE
-		Country newCountry = new Country(country.size() + 1, "Amilcar", "Bilolilo", "Heaven", "Bumby");
+		for (Country c : countries2) {
+			System.out.println(c);
+		}
 		
-		// ADDING THE CUSTOMER TO THE ARRAY, TO HAVE LOCAL
-		// CONTROL OF THE DATA
-		country.add(newCountry);
-		// ADDING THE NEW CUSTOMER INTO THE DATABASE
-		System.out.println(db.saveCountry(newCountry));
+		// Using the fourth method 
+		Country brasil = new Country.CountryBuilder("BRA", "Republic of Brazil", Continent.SOUTH_AMERICA, 200f, "Lula").build();
+		boolean result = db.save(brasil);
 
+		Country ireland = new Country.CountryBuilder("IRE", "Republic of Ireland",Continent.EUROPE, 50f,"Leo Varadkar").builder();
+		boolean result = db.save(ireland);
+
+		Country japan = new Country.CountryBuilder("JAP", "Japan", Continent.ASIA, 100f, "Hisamitsu").builder();
+		boolean result = db.save(japan);
+		
+		System.out.println(result);
+		
+		
 	}
-		
+
 }
-
-
