@@ -15,7 +15,7 @@ public enum Continent {
 		this.name = name;
 	}
 	
-	public String getName() {
+	public String getContinent() {
 		return this.name;
 	}
 }
