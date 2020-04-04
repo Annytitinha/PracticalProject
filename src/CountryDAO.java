@@ -8,10 +8,16 @@ public class CountryDAO implements CountryDAOInterface{
         ResultSet res = null;
         ArrayList<Country> countryList = new ArrayList<Country>();
         try {
+        	/**
+        	 * aqui ele faz a conexao com banco de dados, fazendo a chamada da query
+        	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country");
             res = query.executeQuery();
             while (res.next()){
+            	/**
+            	 * aqui ele cria um objeto pais e adiciona as variaveis dele, adicionando o na lista de paises
+            	 */
                 Country country = new Country();
                 country.setCode(res.getString("Code"));
                 country.setName(res.getString("Name"));
@@ -37,6 +43,9 @@ public class CountryDAO implements CountryDAOInterface{
         ResultSet res = null;
         ArrayList<Country> countryList = new ArrayList<Country>();
         try {
+        	/**
+        	 * nessa funcao ele verifica quais os paises tem nomes parecidos
+        	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country WHERE Name LIKE '%" + countryName + "%'");
             res = query.executeQuery();
@@ -66,6 +75,9 @@ public class CountryDAO implements CountryDAOInterface{
         ArrayList<Country> countryList = new ArrayList<Country>();
         ResultSet res = null;
         try {
+        	/**
+        	 * pegar o pais pelo codigo
+        	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country WHERE Code LIKE '%" + countryCode + "%'");
             res = query.executeQuery();
@@ -95,6 +107,11 @@ public class CountryDAO implements CountryDAOInterface{
         ResultSet res = null;
         String latestCode = "";
         try {
+        	/**
+        	 * Fazemos a query , para cada interrogacao , um dado a ser adicionado.
+        	 * quando o resultado eh uma linha afetada, ele vai retornar o codigo do pais inserido, caso nao tenha linha afetada , ele vai dar erro e vai vol
+        	 * voltar em branco com uma mensagem de erro no servidor
+        	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement(
                     "INSERT INTO country(Code, Name, Continent, SurfaceArea, HeadOfState) " +
