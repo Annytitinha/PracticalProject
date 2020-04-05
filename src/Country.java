@@ -1,13 +1,26 @@
 
 public class Country {
+	// Country's Code CHAR(3)
 	private String code;
+	// Country's Name
 	private String name;
+	// Continent where the Country is
 	private String continent;
+	// Region where the Country is
 	private float surfaceArea;
+	// Surface Area of the country in km2
 	private String headOfState;
 
 	public Country() {
 	}
+	/**
+	 * 
+	 * @param code
+	 * @param name
+	 * @param continent
+	 * @param surfaceArea
+	 * @param headOfState
+	 */
 	
 	public Country(String code, String name, String continent, float surfaceArea, String headOfState) {
 		this.code = code;
@@ -16,15 +29,26 @@ public class Country {
 		this.surfaceArea = surfaceArea;
 		this.headOfState = headOfState;
 	}
+	/**
+	 * @return name
+	 */
 
 	public String getCode() {
 		return code;
 	}
+	/**
+	 * 
+	 * @param code
+	 */
 
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+	/**
+	 * 
+	 * @return name
+	 */
+		
 	public String getName() {
 		return name;
 	}
@@ -32,6 +56,10 @@ public class Country {
 	public void setName(String name) {
 		this.name = name;
 	}
+	/**
+	 * 
+	 * @return continent
+	 */
 
 	public String getContinent() {
 		return continent;
@@ -40,6 +68,10 @@ public class Country {
 	public void setContinent(String continent) {
 		this.continent = continent;
 	}
+	/**
+	 * 
+	 * @return SurfaceArea
+	 */
 
 	public float getSurfaceArea() {
 		return surfaceArea;
@@ -48,6 +80,10 @@ public class Country {
 	public void setSurfaceArea(float surfaceArea) {
 		this.surfaceArea = surfaceArea;
 	}
+	/**
+	 * 
+	 * @return headOfState;
+	 */
 	public String getHeadOfState() {
 		return headOfState;
 	}
