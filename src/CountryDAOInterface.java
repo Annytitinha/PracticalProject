@@ -1,26 +1,31 @@
 import java.util.ArrayList;
+/**
+ * 
+ * @author Anaiana
+ *
+ */
 
 public interface CountryDAOInterface {
 	/**
-	 * Eh para pegar a lista de todos ospaises no banco de dados
+	 * It gets the list of all countries in the database
 	 * @return
 	 */
     public ArrayList<Country> getAllCountires();
     
     /**
-     * para pegar uma lista de paises com o mesmo nome
+     * It gets a list of countries with the same name
      * @param name
      * @return
      */
     public ArrayList<Country> getCountriesByName(String name);
     /**
-     * lista de paises pelo codigo, retornando apenas 1 resultado, pois o codigo eh unico
+     * Get list of countries by code, returning only 1 result, as the code is unique
      * @param code
      * @return
      */
     public ArrayList<Country> getCountriesByCode(String code);
     /**
-     * para adicionar um pais no banco de dados
+     * Add a country to the database
      * @param country
      * @return
      */
