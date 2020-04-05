@@ -7,27 +7,26 @@ import java.util.ArrayList;
 
 public interface CountryDAOInterface {
 	/**
-	 * It gets the list of all countries in the database
-	 * @return
+	 * @return all countries in the database
 	 */
     public ArrayList<Country> getAllCountires();
     
     /**
      * It gets a list of countries with the same name
      * @param name
-     * @return
+     * @return name
      */
     public ArrayList<Country> getCountriesByName(String name);
     /**
      * Get list of countries by code, returning only 1 result, as the code is unique
      * @param code
-     * @return
+     * @return code
      */
     public ArrayList<Country> getCountriesByCode(String code);
     /**
      * Add a country to the database
      * @param country
-     * @return
+     * @return country
      */
     public String insertNewCountry(Country country);
 }
