@@ -39,11 +39,11 @@ Main.java
 In the main class the user has the following options menu, where the user interface will be executed as required.
 
 System.out.println("\nCountry List Application\n");
-		System.out.println("Press 1 - List all countries");
-		System.out.println("Press 2 - Find country by code");
-		System.out.println("Press 3 - Find country by name");
-		System.out.println("Press 4 - Add a new country");
-		System.out.println("Press 5 - Exit");
+System.out.println("Press 1 - List all countries");
+System.out.println("Press 2 - Find country by code");
+System.out.println("Press 3 - Find country by name");
+System.out.println("Press 4 - Add a new country");
+System.out.println("Press 5 - Exit");
 
 
 ## DatabaseConnection class
@@ -52,12 +52,12 @@ private static DatabaseConnection instance;
 ...
  //Access point to the unique instance of the singleton
     public static DatabaseConnection getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new DatabaseConnection();
-        } else if (instance.getConnection().isClosed()) {
-            instance = new DatabaseConnection();
-        }
-        return instance;
+    if (instance == null) {
+    	instance = new DatabaseConnection();
+    } else if (instance.getConnection().isClosed()) {
+    	instance = new DatabaseConnection();
+    }
+    return instance;
 
 ## Country class
 Class with all characteristics and methods required according to the database provided;
