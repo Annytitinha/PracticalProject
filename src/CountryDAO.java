@@ -1,5 +1,10 @@
 import java.sql.*;
 import java.util.ArrayList;
+/**
+ * 
+ * @author Anaiana
+ *
+ */
 
 public class CountryDAO implements CountryDAOInterface{
 
@@ -9,14 +14,14 @@ public class CountryDAO implements CountryDAOInterface{
         ArrayList<Country> countryList = new ArrayList<Country>();
         try {
         	/**
-        	 * aqui ele faz a conexao com banco de dados, fazendo a chamada da query
+        	 * here it makes the connection to the database, making the query call
         	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country");
             res = query.executeQuery();
             while (res.next()){
             	/**
-            	 * aqui ele cria um objeto pais e adiciona as variaveis dele, adicionando o na lista de paises
+            	 * here it creates a country object and adds its variables, adding it to the country list
             	 */
                 Country country = new Country();
                 country.setCode(res.getString("Code"));
@@ -44,7 +49,7 @@ public class CountryDAO implements CountryDAOInterface{
         ArrayList<Country> countryList = new ArrayList<Country>();
         try {
         	/**
-        	 * nessa funcao ele verifica quais os paises tem nomes parecidos
+        	 * in this function it checks which countries have similar names
         	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country WHERE Name LIKE '%" + countryName + "%'");
@@ -76,7 +81,7 @@ public class CountryDAO implements CountryDAOInterface{
         ResultSet res = null;
         try {
         	/**
-        	 * pegar o pais pelo codigo
+        	 * Get the country by code
         	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country WHERE Code LIKE '%" + countryCode + "%'");
@@ -108,9 +113,11 @@ public class CountryDAO implements CountryDAOInterface{
         String latestCode = "";
         try {
         	/**
-        	 * Fazemos a query , para cada interrogacao , um dado a ser adicionado.
-        	 * quando o resultado eh uma linha afetada, ele vai retornar o codigo do pais inserido, caso nao tenha linha afetada , ele vai dar erro e vai vol
-        	 * voltar em branco com uma mensagem de erro no servidor
+        	 *Here we make the query and for each question symbol, a data will to be added.
+        	 * when the result is an affected line, it will return the country code inserted,
+        	 * if there is no affected line, it will give an error 
+        	 * and will return blank with an error message on the server
+        	 * 
         	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement(
