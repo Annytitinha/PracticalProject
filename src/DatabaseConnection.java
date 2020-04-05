@@ -21,12 +21,19 @@ public class DatabaseConnection {
             System.out.println("Database Connection Creation Failed : " + ex.getMessage());
         }
     }
+    /**
+     * 
+     * @return connection with the database
+     */
 
- 
     public Connection getConnection() {
         return connection;
     }
-//Access point to the unique instance of the singleton
+    /** 
+     * @return instance
+     * @throws SQLException
+     */
+    //Access point to the unique instance of the singleton
     public static DatabaseConnection getInstance() throws SQLException {
         if (instance == null) {
             instance = new DatabaseConnection();
