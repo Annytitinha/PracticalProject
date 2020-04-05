@@ -2,12 +2,12 @@ import java.util.ArrayList;
 /**
  * 
  * @author Anaiana
- *
+ * Factory
  */
 
 public interface CountryDAOInterface {
 	/**
-	 * @return all countries in the database
+	 *@return all countries in the database
 	 */
     public ArrayList<Country> getAllCountires();
     
