@@ -6,9 +6,9 @@ public class Country {
 	private String name;
 	// Continent where the Country is
 	private String continent;
-	// Region where the Country is
-	private float surfaceArea;
 	// Surface Area of the country in km2
+	private float surfaceArea;
+	// The Head of State's name
 	private String headOfState;
 
 	public Country() {
