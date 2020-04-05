@@ -7,18 +7,18 @@
 
 The lecture provided access to a real database server that contains only one table (country), and I have been tasked to develop a Java program in charge of:
 
- - • Retrieve all records stored in the database table 
- - • Retrieve records by country name 
- - • Retrieve records by country code 
- - • Add new records into the database
+ - Retrieve all records stored in the database table 
+ - Retrieve records by country name 
+ - Retrieve records by country code 
+ - Add new records into the database
 
 ## Specific Requirements
 
- - •You are required to implement the Data Access Object pattern, incombination with any other two creational patterns of your choice. 
- -  •You also have to create a simple CLI client program to test your implementation of the patterns. 
- - • You must create the class Country to model the entity on the database, as well as an ENUM to guarantee that the value of the continent matches the options on the database.
- - • You also are in charge of creating all the code corresponding to the interaction with the Database. 
- - • All object creation should be done following a design pattern of your choice.
+ - You are required to implement the Data Access Object pattern, incombination with any other two creational patterns of your choice. 
+ -  You also have to create a simple CLI client program to test your implementation of the patterns. 
+ - You must create the class Country to model the entity on the database, as well as an ENUM to guarantee that the value of the continent matches the options on the database.
+ - You also are in charge of creating all the code corresponding to the interaction with the Database. 
+ - All object creation should be done following a design pattern of your choice.
 
 ## Object Orientation with Design Patterns used in the project
 
@@ -26,13 +26,13 @@ Singleton design pattern was used in the DatabaseConnection class to connect to 
 The Abstract Design Pattern Factory was used in the CoutryDAOInterface class that will be implemented when calling the CountryDao class.
 
 # Classes implemented
-Continent.java
-Country.java
-CountryDAO.java
-CountryDAOInterface.java
-DatabaseConnection.java
-Main.java
 
+ - Continent.java 
+ - Country.java 
+ - CountryDAO.java 
+ - CountryDAOInterface.java
+ - DatabaseConnection.java M
+ - Main.java
 
 ## Main Class
 In the main class the user has the following options menu, where the user interface will be executed as required.
