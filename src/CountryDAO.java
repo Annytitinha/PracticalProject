@@ -11,19 +11,19 @@ public class CountryDAO implements CountryDAOInterface{
     @Override
     public ArrayList<Country> getAllCountires() {
         ResultSet res = null;
+        
         ArrayList<Country> countryList = new ArrayList<Country>();
         try {
-        	/**
-        	 * here it makes the connection to the database, making the query call
-        	 */
-            Connection dbConn = DatabaseConnection.getInstance().getConnection();
+        	
+        	 // Here it makes the connection to the database, making the query call
+        	Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country");
             res = query.executeQuery();
+            //While there are more countries in the result set
             while (res.next()){
-            	/**
-            	 * here it creates a country object and adds its variables, adding it to the country list
-            	 */
-                Country country = new Country();
+            	
+            	 // here it creates a new country object and adds its variables, adding its values to the country list
+            	Country country = new Country();
                 country.setCode(res.getString("Code"));
                 country.setName(res.getString("Name"));
                 country.setContinent(res.getString("Continent"));
@@ -113,7 +113,7 @@ public class CountryDAO implements CountryDAOInterface{
         String latestCode = "";
         try {
         	/**
-        	 *Here we make the query and for each question symbol, a data will to be added.
+        	 *Here we make the query and for each question symbol, a data will be added in the database.
         	 * when the result is an affected line, it will return the country code inserted,
         	 * if there is no affected line, it will give an error 
         	 * and will return blank with an error message on the server
