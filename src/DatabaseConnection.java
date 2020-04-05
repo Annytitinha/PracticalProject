@@ -7,6 +7,7 @@ public class DatabaseConnection {
 	 * @Anaiana
 	 * Using singleton design pattern to connect with the database
 	 */
+	//declaration of instance of the singleton
     private static DatabaseConnection instance;
     private Connection connection;
     private String url = "jdbc:mysql://52.50.23.197:3306/world";
@@ -21,7 +22,7 @@ public class DatabaseConnection {
         }
     }
 
- //Access point to the unique instance of the singleton
+ 
     public Connection getConnection() {
         return connection;
     }
