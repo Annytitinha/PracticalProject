@@ -81,7 +81,7 @@ public class CountryDAO implements CountryDAOInterface{
         ResultSet res = null;
         try {
         	/**
-        	 * Get the country by code
+        	 * Getting the country by code
         	 */
             Connection dbConn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement query = dbConn.prepareStatement("SELECT * FROM country WHERE Code LIKE '%" + countryCode + "%'");
