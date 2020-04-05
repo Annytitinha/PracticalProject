@@ -26,6 +26,14 @@ Database.
 Singleton design pattern was used in the DatabaseConnection class to connect to the database passing and receive data in the form of objects.
 The Abstract Design Pattern Factory was used in the CoutryDAOInterface class that will be implemented when calling the CountryDao class.
 
+# Classes implemented
+Continent.java
+Country.java
+CountryDAO.java
+CountryDAOInterface.java
+DatabaseConnection.java
+Main.java
+
 
 ## Main Class
 In the main class the user has the following options menu, where the user interface will be executed as required.
@@ -38,4 +46,42 @@ System.out.println("\nCountry List Application\n");
 		System.out.println("Press 5 - Exit");
 
 
-## CountryDAO class
+## DatabaseConnection class
+In this class I used singleton design pattern to connect with the database
+private static DatabaseConnection instance;
+...
+ //Access point to the unique instance of the singleton
+    public static DatabaseConnection getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        } else if (instance.getConnection().isClosed()) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+
+## Country class
+Class with all characteristics and methods required according to the database provided;
+public class Country {
+	// Country's Code CHAR(3)
+	private String code;
+	// Country's Name
+	private String name;
+	// Continent where the Country is
+	private String continent;
+	// Surface Area of the country
+	private float surfaceArea;
+	// The Head of State's name
+	private String headOfState;
+
+
+
+
+# Methods used to call, add and check countries by name or code. 
+
+getAllCountires() : return all countries in the database.
+
+getCountriesByName(String name): It gets a list of countries by the same name.
+getCountriesByCode(String code) : Get a list of countries by code, returning only 1 result, as the code is unique.
+insertNewCountry(Country country): Add a country to the database.
+
+@Anaiana
