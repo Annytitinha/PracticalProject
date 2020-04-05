@@ -2,21 +2,30 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+/**
+ * 
+ * @author Anaiana
+ * https://github.com/Annytitinha/PracticalProject
+ *
+ */
 
 public class Main {
-
+	//Method to get input from the user
 	private int input = 0;
 	private BufferedReader bufferedReader;
 
 	private Main() {
+		//InputStream in.
 		bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			system();
 		} while (input != 5);
 	}
-
+	//menu options
 	private void system() {
+		
 		System.out.println("\nCountry List Application\n");
+		BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Press 1 - List all countries");
 		System.out.println("Press 2 - Find country by code");
 		System.out.println("Press 3 - Find country by name");
@@ -33,6 +42,7 @@ public class Main {
 
 	private void functions(int input) {
 		if (input == 1) {
+			// Getting all the countries in the database
 			ArrayList<Country> countryList = new ArrayList<>();
 			CountryDAO countryDAO = new CountryDAO();
 			countryList = countryDAO.getAllCountires();
@@ -47,6 +57,7 @@ public class Main {
 		}
 		if (input == 2) {
 			System.out.println("Enter a code");
+			// Getting the countries by code in the database
 			ArrayList<Country> countryList = new ArrayList<>();
 			try {
 				String code = bufferedReader.readLine();
@@ -67,6 +78,7 @@ public class Main {
 
 		if (input == 3) {
 			System.out.println("Enter a name");
+			// Getting the countries by name in the database
 			ArrayList<Country> countryList = new ArrayList<>();
 			try {
 				String name = bufferedReader.readLine();
@@ -91,6 +103,10 @@ public class Main {
 			int continentInput = 0;
 			String res = "";
 			try {
+				
+				 //To insert a new country, for each line the user will add a data 
+				 //in the fifth line option it selects the continent according to the menu option.
+				 
 				System.out.println("Enter a code");
 				newCountry.setCode(bufferedReader.readLine());
 				System.out.println("Enter a Name");
